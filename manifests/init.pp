@@ -20,10 +20,10 @@ class graphite{
       include graphite::web
     }
     debian, ubuntu: {
-      fail 'Debian based systems not supported ... yet'
+      warning 'Graphite web is currently not supported on Debian ... yet'
     }
     default: {
-      fail "Your OS ${::operatingsystem} is currently not supported"
+      warning "Graphite web is currently not supported on Your OS ${::operatingsystem}"
     }
   }
 }
