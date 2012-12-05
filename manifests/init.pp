@@ -14,7 +14,16 @@ class graphite{
 
   include graphite::carbon
   include graphite::whisper
-  include graphite::web
 
+  case $::operatingsystem {
+    centos, redhat: {
+      include graphite::web
+    }
+    debian, ubuntu: {
+      fail 'Debian based systems not supported ... yet'
+    }
+    default: {
+      fail "Your OS ${::operatingsystem} is currently not supported"
+    }
+  }
 }
-

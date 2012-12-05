@@ -1,5 +1,12 @@
+# Class: graphitea::whisper::package
+#
+# This class install the whisper package
+#
 class graphite::whisper::package {
-  package {'whisper':
-    ensure => present;
-  }
+
+require graphite::params
+
+package { $graphite::params::whisper:
+  ensure => present;
+}
 }

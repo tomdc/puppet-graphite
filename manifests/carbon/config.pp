@@ -1,6 +1,6 @@
 # Class: graphite
 #
-# This module manages graphite
+# This class configs the carbon storage
 #
 # Parameters:
 #
@@ -12,18 +12,21 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class graphite::carbon::config {
-  include concat::setup
+
+  require concat::setup
+  require graphite::params
+
   concat { '/etc/carbon/storage-schemas.conf':
     group   => '0',
     mode    => '0644',
     owner   => '0',
-    notify  => Service['carbon-cache'];
+    notify  => Service[$graphite::params::carbonservice];
   }
+
   concat::fragment { 'header':
     target  => '/etc/carbon/storage-schemas.conf',
     order   => 0,
     source  => 'puppet:///modules/graphite/storage-schemas.conf'
   }
-
 
 }

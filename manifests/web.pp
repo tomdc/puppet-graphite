@@ -21,6 +21,7 @@ class graphite::web (
 
   require graphite::params
   include graphite::web::package
+
   class {'graphite::web::config':
     time_zone => $time_zone,
   }
@@ -28,6 +29,3 @@ class graphite::web (
     include graphite::web::service
   }
 }
-
-
-
