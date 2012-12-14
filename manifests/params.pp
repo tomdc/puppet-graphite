@@ -4,10 +4,7 @@
 #
 #
 #
-class graphite::params (
-  $time_zone = 'UTC',
-  $manage_httpd = false
-) {
+class graphite::params {
 
   $carbon = $::operatingsystem ? {
     /(?i)(redhat|centos)/      =>  'carbon',
@@ -26,5 +23,11 @@ class graphite::params (
     /(?i)(ubuntu|debian)/   =>  'python-whisper',
     default                 =>  'whisper'
   }
+
+	$graphiteweb = $::operatingsystem ? {
+		/(?i)(redhat|centos)/   =>  'graphite-web',
+		/(?i)(ubuntu|debian)/   =>  'python2.7-graphite-web',
+		default                 =>  'graphite-web'
+	}
 
 }

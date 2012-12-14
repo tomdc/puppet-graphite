@@ -1,6 +1,7 @@
 # = Class: graphite
 #
-# This module manages graphite
+# This module manages graphite.
+# Debian pkg used was created via: https://github.com/jbraeuer/graphite-debs
 #
 # == Sample Usage:
 #
@@ -10,17 +11,25 @@
 #
 # * Implement user creation.
 #
-class graphite{
+class graphite ( $vhostname = $::fqdn, $timezone = 'Europe/Brussels' , $manage_http = false ) {
 
   include graphite::carbon
   include graphite::whisper
 
   case $::operatingsystem {
     centos, redhat: {
-      include graphite::web
+    	class {
+				'graphite::web':
+					manage_http =>  $manage_http
+			}
     }
     debian, ubuntu: {
-      warning 'Graphite web is currently not supported on Debian ... yet'
+      class {
+				'graphite::web::debian':
+					vhostname		=>	$vhostname,
+					timezone		=>	$timezone,
+					manage_http	=>	$manage_http,
+			}
     }
     default: {
       warning "Graphite web is currently not supported on Your OS ${::operatingsystem}"

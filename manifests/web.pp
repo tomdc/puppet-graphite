@@ -14,11 +14,7 @@
 #
 # * Update documentation
 #
-class graphite::web (
-  $time_zone = $::graphite::params::time_zone,
-  $manage_httpd = $::graphite::params::manage_httpd)
-  {
-
+class graphite::web ( $manage_http, $time_zone, $vhostname ){
   require graphite::params
   include graphite::web::package
 
