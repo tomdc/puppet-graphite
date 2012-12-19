@@ -3,6 +3,11 @@
 #
 # Debian Graphite web config
 #
+# TODO
+# webapp/graphite/local_settings.py: set the correct storage path used by
+# the debian carbon pkg: /var/lib/graphite
+# also users may vary: _graphite
+#
 class graphite::web::debian ( $vhostname, $timezone, $manage_http ) {
 
 	require graphite::params
