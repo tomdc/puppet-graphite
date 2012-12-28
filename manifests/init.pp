@@ -11,25 +11,25 @@
 #
 # * Implement user creation.
 #
-class graphite ( $vhostname = $::fqdn, $timezone = 'Europe/Brussels' , $manage_http = false ) {
+class graphite ( $vhostname = $::fqdn, $time_zone = 'UTC' , $manage_http = false ) {
 
   include graphite::carbon
   include graphite::whisper
 
   case $::operatingsystem {
     centos, redhat: {
-    	class {
-				'graphite::web':
-					manage_http =>  $manage_http
-			}
+      class {
+        'graphite::web':
+          manage_http =>  $manage_http
+      }
     }
     debian, ubuntu: {
       class {
-				'graphite::web::debian':
-					vhostname		=>	$vhostname,
-					timezone		=>	$timezone,
-					manage_http	=>	$manage_http,
-			}
+        'graphite::web::debian':
+          vhostname   =>  $vhostname,
+          time_zone   =>  $time_zone,
+          manage_http =>  $manage_http,
+      }
     }
     default: {
       warning "Graphite web is currently not supported on Your OS ${::operatingsystem}"
