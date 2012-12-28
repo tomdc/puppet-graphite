@@ -8,7 +8,13 @@
 # the debian carbon pkg: /var/lib/graphite
 # also users may vary: _graphite
 #
-class graphite::web::debian ( $vhostname, $time_zone, $manage_http ) {
+class graphite::web::debian (
+  $vhostname    = $::graphite::vhostname,
+  $time_zone    = $::graphite::time_zone,
+  $manage_http  = $::graphite::manage_http
+  ) 
+  inherits graphite
+{
 
   require graphite::params
 

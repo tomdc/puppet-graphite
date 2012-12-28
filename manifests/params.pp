@@ -24,10 +24,10 @@ class graphite::params {
     default                 =>  'whisper'
   }
 
-	$graphiteweb = $::operatingsystem ? {
-		/(?i)(redhat|centos)/   =>  'graphite-web',
-		/(?i)(ubuntu|debian)/   =>  'python2.7-graphite-web',
-		default                 =>  'graphite-web'
-	}
+  $graphiteweb = $::operatingsystem ? {
+    /(?i)(redhat|centos)/   =>  'graphite-web',
+    /(?i)(ubuntu|debian)/   =>  'python2.7-graphite-web',
+    default                 =>  'graphite-web'
+  }
 
 }

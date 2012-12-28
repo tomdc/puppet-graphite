@@ -2,13 +2,12 @@
 #
 # This module manages the carbon service
 #
+# Change to true, to enable carbon-cache on boot
+# CARBON_CACHE_ENABLED=true
+#
 class graphite::carbon::service {
 
 require graphite::params
-
-# /etc/default/graphite-carbon 
-# Change to true, to enable carbon-cache on boot
-# CARBON_CACHE_ENABLED=true
 
 service { $graphite::params::carbonservice:
   ensure     => running,
