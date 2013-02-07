@@ -3,6 +3,9 @@
 # This module manages graphite.
 # Debian pkg used was created via: https://github.com/jbraeuer/graphite-debs
 #
+# On Debian, do not forget to enable carbon-cache in /etc/default/graphite-carbon
+# CARBON_CACHE_ENABLED=true
+#
 # == Sample Usage:
 #
 #   include graphite
@@ -11,7 +14,7 @@
 #
 # * Implement user creation.
 #
-class graphite ( $vhostname = $::fqdn, $time_zone = 'UTC' , $manage_http = false ) {
+class graphite ( $vhostname = $::fqdn, $time_zone = 'UTC' , $manage_httpd = false ) {
 
   include graphite::carbon
   include graphite::whisper
@@ -20,15 +23,15 @@ class graphite ( $vhostname = $::fqdn, $time_zone = 'UTC' , $manage_http = false
     centos, redhat: {
       class {
         'graphite::web':
-          manage_http =>  $manage_http
+          manage_httpd =>  $manage_httpd
       }
     }
     debian, ubuntu: {
       class {
         'graphite::web::debian':
-          vhostname   =>  $vhostname,
-          time_zone   =>  $time_zone,
-          manage_http =>  $manage_http,
+          vhostname    =>  $vhostname,
+          time_zone    =>  $time_zone,
+          manage_httpd =>  $manage_httpd,
       }
     }
     default: {

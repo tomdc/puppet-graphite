@@ -17,7 +17,7 @@
 class graphite::web (
   $vhostname    = $::graphite::vhostname,
   $time_zone    = $::graphite::time_zone,
-  $manage_http  = $::graphite::manage_http
+  $manage_httpd = $::graphite::manage_httpd
   )
   inherits graphite
   {

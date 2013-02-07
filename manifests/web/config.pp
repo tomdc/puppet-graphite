@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-class graphite::web::config ($time_zone = undef){
+class graphite::web::config ($time_zone = $graphite::time_zone){
 
   file {'local_settings.py':
     ensure    => file,

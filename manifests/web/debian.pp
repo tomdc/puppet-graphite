@@ -9,17 +9,17 @@
 # also users may vary: _graphite
 #
 class graphite::web::debian (
-  $vhostname    = $::graphite::vhostname,
-  $time_zone    = $::graphite::time_zone,
-  $manage_http  = $::graphite::manage_http
-  ) 
+  $vhostname      = $::graphite::vhostname,
+  $time_zone      = $::graphite::time_zone,
+  $manage_httpd   = $::graphite::manage_httpd
+)
   inherits graphite
 {
 
   require graphite::params
 
   # still needed:
-  # Make /opt/graphite/storage/ writable for www-data
+  # Graphite should search for data in /var/lib/graphite/whisper on Debian
 
   # install pkg
   package {
@@ -55,7 +55,7 @@ class graphite::web::debian (
   }
 
   # put the apache vhost in place if manage http is set
-  if $manage_http {
+  if $manage_httpd {
 
     # put vhost in place
     file {
