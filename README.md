@@ -48,12 +48,14 @@ And you also need to have EPEL available  e.g from
 
 Debian notes
 
-- /etc/default/graphite-carbon needs to be changed so that carbon starts at boot.
-- the default vhostname is the fqdn of the machine, which will conflict with the default vhost.
+  * /etc/default/graphite-carbon needs to be changed so that carbon starts at boot.
+    CARBON_CACHE_ENABLED=true
+  * the default vhostname is the fqdn of the machine, which will conflict with the default vhost.
+    So diable the default or change the graphite vhost template vhost name
 
 Packages available upstream:
-* graphite-carbon
-* python-whisper
+  * graphite-carbon
+  * python-whisper
 
 Still needed is a graphite-web package.
 https://github.com/jbraeuer/graphite-debs is used to generate one.
@@ -77,7 +79,6 @@ Testing
 -------
 
 More Detailed Examples on how to use this module including a fully functional Vagrant box can be found on https://github.com/KrisBuytaert/vagrant-graphite.git
-
 
 I've tagged the code that supports 0.9.9 versions of graphite-web and carbon with
 the 0.9.9 tag ..
