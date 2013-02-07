@@ -1,4 +1,4 @@
-Puppet moduel for Graphite
+Puppet module for Graphite
 ==========================
 
 This is a puppet-graphite module.
@@ -20,6 +20,8 @@ This module can be installed via the puppet module tool:
 Notes
 -----
 
+- Centos
+
 I've made the packaged versions of graphite-web, carbon and whisper. 
 available on
 
@@ -40,6 +42,24 @@ And you also need to have EPEL available  e.g from
         descr    => 'Epel Repo at Inuits',
         gpgcheck => '0',
     }
+
+
+- Debian
+
+Debian notes
+
+- /etc/default/graphite-carbon needs to be changed so that carbon starts at boot.
+- the default vhostname is the fqdn of the machine, which will conflict with the default vhost.
+
+Packages available upstream:
+* graphite-carbon
+* python-whisper
+
+Still needed is a graphite-web package.
+https://github.com/jbraeuer/graphite-debs is used to generate one.
+It installs everything in /opt/graphite, and requires some config before it can be used.
+
+
 
 Usage
 -----

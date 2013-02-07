@@ -9,7 +9,7 @@
 # Set your local timezone (Django's default is America/Chicago)
 # If your graphs appear to be offset by a couple hours then this probably
 # needs to be explicitly set to your local timezone.
-TIME_ZONE = '<%= timezone %>'
+TIME_ZONE = '<%= time_zone %>'
 
 # Override this to provide documentation specific to your Graphite deployment
 #DOCUMENTATION_URL = "http://graphite.readthedocs.org/"
@@ -61,8 +61,8 @@ TIME_ZONE = '<%= timezone %>'
 
 ## Data directories
 # NOTE: If any directory is unreadable in DATA_DIRS it will break metric browsing
-#WHISPER_DIR = '/opt/graphite/storage/whisper'
-#RRD_DIR = '/opt/graphite/storage/rrd'
+WHISPER_DIR = '/var/lib/graphite/whisper'
+RRD_DIR = '/var/lib/graphite/rrd'
 #DATA_DIRS = [WHISPER_DIR, RRD_DIR] # Default: set from the above variables
 #LOG_DIR = '/opt/graphite/storage/log/webapp'
 #INDEX_FILE = '/opt/graphite/storage/index'  # Search index file
