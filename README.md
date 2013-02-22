@@ -62,7 +62,6 @@ https://github.com/jbraeuer/graphite-debs is used to generate one.
 It installs everything in /opt/graphite, and requires some config before it can be used.
 
 
-
 Usage
 -----
 
